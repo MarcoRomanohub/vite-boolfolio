@@ -1,17 +1,19 @@
     <script>
     import axios from 'axios'
+    import {store} from './data/store'
       export default {
         data(){
           return{
-
+            'projects':[]
           }
         },
 
         methods:{
           getApi(){
-            axios.get('http://127.0.0.1:8000/api/projects')
+            axios.get(store.apiUrl)
               .then(result =>{
                 console.log(result.data);
+                this.projects = result.data
               })
               .catch(error =>{
                 console.log(error.message);
@@ -27,7 +29,10 @@
 
 <template>
   <div>
-    prova
+    <h2>Elenco Progetti</h2>
+    <ul>
+      <li v-for="project in projects" :key="project.id">{{ project.id }} - {{ project.title }}</li>
+    </ul>
   </div>
 </template>
 
