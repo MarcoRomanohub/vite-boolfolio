@@ -30,7 +30,10 @@
   <div>
     <h1>I miei Post</h1>
     <ul>
-      <li v-for="projects in projects" :key="projects.id">{{ projects.id }} - {{ projects.title }}</li>
+      <li v-for="project in projects" :key="project.id">
+        {{ project.id }} -
+        <router-link :to="{name: 'projectDetail', params:{slug: project.slug}}">{{ project.title }}</router-link> 
+      </li>
     </ul>
   </div>
 </template>
